@@ -11,8 +11,11 @@ def home():
     return "Hello World!"
 
 
-@app.route('/new')
+@app.route('/new', methods=['GET', 'POST'])
 def new():
+    if flask.request.method == 'POST':
+        print "new message:", flask.request.form['message']
+        return flask.redirect(flask.url_for('home'))
     return flask.render_template('new.html')
 
 
