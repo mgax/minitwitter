@@ -11,7 +11,9 @@
     {% for message in messages %}
     <article>
         <p>
-            <strong>{{ message.person.username }}:</strong>
+            {% set username = message.person.username %}
+            {% set url = url_for('person', username=username) %}
+            <strong><a href="{{ url }}">{{ username }}</a>:</strong>
             {{ message.text }}
         </p>
         <footer><time>{{ message.time|local_time_format }}</time></footer>

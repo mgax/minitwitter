@@ -57,6 +57,12 @@ def login_required(func):
 def home():
     return flask.render_template('messages.html', messages=Message.query.all())
 
+@app.route('/<username>')
+def person(username):
+    person = Person.query.filter_by(username=username).first_or_404()
+    messages = Message.query.filter_by(person=person).all()
+    return flask.render_template('messages.html', messages=messages)
+
 
 @app.route('/new', methods=['GET', 'POST'])
 @login_required
