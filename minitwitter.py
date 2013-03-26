@@ -15,6 +15,14 @@ class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String)
     time = db.Column(db.DateTime)
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
+    person = db.relationship('Person',
+        backref=db.backref('messages', lazy='dynamic'))
+
+
+class Person(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String)
 
 
 @app.template_filter()
