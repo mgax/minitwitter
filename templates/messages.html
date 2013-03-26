@@ -7,6 +7,6 @@
 {% for message in messages %}
 <article>
     <p>{{ message.text }}</p>
-    <footer><time>{{ message.time }}</time></footer>
+    <footer><time>{{ message.time|local_time_format }}</time></footer>
 </article>
 {% endfor %}

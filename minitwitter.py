@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from datetime import datetime
+import times
 import flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -14,6 +15,11 @@ class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String)
     time = db.Column(db.DateTime)
+
+
+@app.template_filter()
+def local_time_format(value):
+    return times.format(value, timezone='EET', fmt='%d %b %Y, %H:%M:%S')
 
 
 @app.route('/')
