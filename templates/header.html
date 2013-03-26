@@ -3,5 +3,9 @@
         <p class="message">{{ message }}</p>
     {% endfor %}
 
-    <a href="{{ url_for('login') }}">login</a>
+    {% if g.username %}
+        logged in as {{ g.username }}
+    {% else %}
+        <a href="{{ url_for('login') }}">login</a>
+    {% endif %}
 </header>

@@ -21,6 +21,11 @@ def local_time_format(value):
     return times.format(value, timezone='EET', fmt='%d %b %Y, %H:%M:%S')
 
 
+@app.before_request
+def get_user():
+    flask.g.username = flask.session.get('username')
+
+
 @app.route('/')
 def home():
     return flask.render_template('messages.html', messages=Message.query.all())
@@ -42,6 +47,7 @@ def new():
 def login():
     if flask.request.method == 'POST':
         username = flask.request.form['username']
+        flask.session['username'] = username
         flask.flash("welcome, %s" % username)
         return flask.redirect(flask.url_for('home'))
     return flask.render_template('login.html')
