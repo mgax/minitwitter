@@ -1,9 +1,18 @@
 #!/usr/bin/env python
 
 import flask
+from flask.ext.sqlalchemy import SQLAlchemy
 
 app = flask.Flask(__name__)
+db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 app.config['DEBUG'] = True
+
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String)
+    time = db.Column(db.DateTime)
 
 
 @app.route('/')
