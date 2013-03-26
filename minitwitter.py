@@ -18,7 +18,7 @@ class Message(db.Model):
 
 @app.route('/')
 def home():
-    return "Hello World!"
+    return flask.render_template('messages.html', messages=Message.query.all())
 
 
 @app.route('/new', methods=['GET', 'POST'])

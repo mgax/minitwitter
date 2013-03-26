@@ -1,0 +1,12 @@
+<h1>Mini Twitter</h1>
+
+<p>
+    <a href="{{ url_for('new') }}">new message</a>
+</p>
+
+{% for message in messages %}
+<article>
+    <p>{{ message.text }}</p>
+    <footer><time>{{ message.time }}</time></footer>
+</article>
+{% endfor %}
