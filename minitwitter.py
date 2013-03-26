@@ -11,5 +11,10 @@ def home():
     return "Hello World!"
 
 
+@app.route('/new')
+def new():
+    return flask.render_template('new.html')
+
+
 if __name__ == '__main__':
     app.run()
