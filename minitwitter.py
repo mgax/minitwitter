@@ -33,6 +33,7 @@ def new():
         message = Message(text=text, time=datetime.utcnow())
         db.session.add(message)
         db.session.commit()
+        flask.flash("Message saved")
         return flask.redirect(flask.url_for('home'))
     return flask.render_template('new.html')
 
