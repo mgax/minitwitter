@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from datetime import datetime
+from functools import wraps
 import times
 import flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -26,12 +27,22 @@ def get_user():
     flask.g.username = flask.session.get('username')
 
 
+def login_required(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if flask.g.username is None:
+            return flask.redirect('login')
+        return func(*args, **kwargs)
+    return wrapper
+
+
 @app.route('/')
 def home():
     return flask.render_template('messages.html', messages=Message.query.all())
 
 
 @app.route('/new', methods=['GET', 'POST'])
+@login_required
 def new():
     if flask.request.method == 'POST':
         text = flask.request.form['message']
