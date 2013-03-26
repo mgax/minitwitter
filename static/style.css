@@ -1,0 +1,22 @@
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+article {
+    background: #cdf;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+article footer {
+    font-size: 12px;
+    text-align: right;
+}
+
+.message {
+    color: #660;
+    background: #ee0;
+    border: 1px solid #880;
+    padding: 5px;
+}

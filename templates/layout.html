@@ -3,10 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title>Mini Twitter</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
 
     <body>
-        {% include 'header.html' %}
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% include 'header.html' %}
+            {% block content %}{% endblock %}
+        </div>
     </body>
 </html>
