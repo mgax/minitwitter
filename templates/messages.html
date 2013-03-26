@@ -1,12 +1,17 @@
-<h1>Mini Twitter</h1>
+{% extends 'layout.html' %}
 
-<p>
-    <a href="{{ url_for('new') }}">new message</a>
-</p>
 
-{% for message in messages %}
-<article>
-    <p>{{ message.text }}</p>
-    <footer><time>{{ message.time|local_time_format }}</time></footer>
-</article>
-{% endfor %}
+{% block content %}
+    <h1>Mini Twitter</h1>
+
+    <p>
+        <a href="{{ url_for('new') }}">new message</a>
+    </p>
+
+    {% for message in messages %}
+    <article>
+        <p>{{ message.text }}</p>
+        <footer><time>{{ message.time|local_time_format }}</time></footer>
+    </article>
+    {% endfor %}
+{% endblock %}

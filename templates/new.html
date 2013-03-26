@@ -1,6 +1,11 @@
-<h1>New message</h1>
+{% extends 'layout.html' %}
 
-<form method="post">
-    <textarea rows="4" cols="80" name="message"></textarea><br>
-    <button type="submit">send</button>
-</form>
+
+{% block content %}
+    <h1>New message</h1>
+
+    <form method="post">
+        <textarea rows="4" cols="80" name="message"></textarea><br>
+        <button type="submit">send</button>
+    </form>
+{% endblock %}
