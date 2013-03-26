@@ -24,6 +24,15 @@ class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
 
+    @classmethod
+    def get_or_create(cls, username):
+        person = cls.query.filter_by(username=username).first()
+        if person is None:
+            person = cls(username=username)
+            db.session.add(person)
+            db.session.commit()
+        return person
+
 
 @app.template_filter()
 def local_time_format(value):
@@ -54,7 +63,8 @@ def home():
 def new():
     if flask.request.method == 'POST':
         text = flask.request.form['message']
-        message = Message(text=text, time=datetime.utcnow())
+        person = Person.get_or_create(flask.g.username)
+        message = Message(text=text, time=datetime.utcnow(), person=person)
         db.session.add(message)
         db.session.commit()
         flask.flash("Message saved")
