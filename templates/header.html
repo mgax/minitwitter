@@ -2,4 +2,6 @@
     {% for message in get_flashed_messages() %}
         <p class="message">{{ message }}</p>
     {% endfor %}
+
+    <a href="{{ url_for('login') }}">login</a>
 </header>

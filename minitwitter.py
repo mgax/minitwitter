@@ -38,6 +38,15 @@ def new():
     return flask.render_template('new.html')
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if flask.request.method == 'POST':
+        username = flask.request.form['username']
+        flask.flash("welcome, %s" % username)
+        return flask.redirect(flask.url_for('home'))
+    return flask.render_template('login.html')
+
+
 if __name__ == '__main__':
     db.create_all()
     app.run()
