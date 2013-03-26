@@ -5,6 +5,7 @@
 
     {% if g.username %}
         logged in as {{ g.username }}
+        <a href="{{ url_for('logout') }}">logout</a>
     {% else %}
         <a href="{{ url_for('login') }}">login</a>
     {% endif %}

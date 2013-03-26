@@ -53,6 +53,13 @@ def login():
     return flask.render_template('login.html')
 
 
+@app.route('/logout')
+def logout():
+    flask.session.pop('username', '')
+    flask.flash("bye!")
+    return flask.redirect(flask.url_for('home'))
+
+
 if __name__ == '__main__':
     db.create_all()
     app.run()
